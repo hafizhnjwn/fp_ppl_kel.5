@@ -1,0 +1,29 @@
+{{template "header.html" .}}
+<div class="bg-white p-8 rounded shadow-md">
+  <h1 class="text-3xl font-bold mb-4">{{.Name}}</h1>
+  <div class="mb-4">
+    <span class="font-semibold">Plate:</span> {{.Plate}}
+  </div>
+  <div class="mb-4">
+    <span class="font-semibold">Process:</span> {{.Process}}
+  </div>
+  <div class="mb-4">
+    <span class="font-semibold">Input:</span> {{.Username}}, {{.Date}} at {{.Time}}
+  </div>  
+  {{if contains "@admin" .IsAdmin}}
+    <div class="mb-4">
+      <span class="font-semibold">Contact:</span> {{.Contact}}
+    </div>
+    <div class="flex space-x-4">
+      <form action="/vehicles/{{.ID}}/delete" method="POST" class="inline">
+      <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        Delete Vehicle
+      </button>
+      </form>
+      <a href="/vehicles/{{.ID}}/edit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Edit Vehicle
+      </a>
+    </div>
+  {{end}}
+</div>
+{{template "footer.html" .}}

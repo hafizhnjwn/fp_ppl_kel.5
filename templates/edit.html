@@ -1,0 +1,69 @@
+{{template "header.html" .}}
+<h1 class="text-3xl font-bold mb-6">Edit Vehicle</h1>
+<form
+  action="/vehicles/{{.ID}}/edit"
+  method="POST"
+  class="bg-white p-8 rounded shadow-md"
+>
+  <div class="mb-4">
+    {{if .Error}}
+    <p
+      class="bg-red-500 text-white font-italic text-sm py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+    >
+      {{.Error}}
+    </p>
+    {{end}}
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="name"
+      >Name</label
+    >
+    <input
+      type="text"
+      name="name"
+      value="{{.Name}}"
+      required
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+    />
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="plate"
+      >Plate</label
+    >
+    <textarea
+      name="plate"
+      rows="1"
+      required
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+    >{{.Plate}}</textarea>
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="process"
+      >Process</label
+    >
+    <select
+      name="process"
+      required
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+    >
+      <option value="Waiting" {{if eq .Process "Waiting"}}selected{{end}}>Waiting</option>
+      <option value="Washing" {{if eq .Process "Washing"}}selected{{end}}>Washing</option>
+      <option value="Finish" {{if eq .Process "Finish"}}selected{{end}}>Finish</option>
+</select>
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="contact"
+      >Contact</label
+    >
+    <textarea
+      name="contact"
+      rows="4"
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+    >{{.Contact}}</textarea>
+  </div>
+  <button
+    type="submit"
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+  >
+    Update Vehicle
+  </button>
+</form>
+{{template "footer.html" .}}

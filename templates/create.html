@@ -1,0 +1,52 @@
+{{template "header.html" .}}
+<h1 class="text-3xl font-bold mb-6">Input New Vehicle</h1>
+<form
+  action="/vehicles/new"
+  method="POST"
+  class="bg-white p-8 rounded shadow-md"
+>
+  <div class="mb-4">
+    {{if .Error}}
+    <p 
+    class="bg-red-500 text-white font-italic text-sm py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+    >{{.Error}}</p>
+    {{end}}
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="name"
+      >Name</label
+    >
+    <input
+      type="text"
+      name="name"
+      required
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+    />
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="plate"
+      >Plate</label
+    >
+    <textarea
+      name="plate"
+      rows="1"
+      required
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+    ></textarea>
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="contact"
+      >Contact</label
+    >
+    <textarea
+      name="contact"
+      rows="4"
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+    ></textarea>
+  </div>
+  <button
+    type="submit"
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+  >
+    Create Vehicle
+  </button>
+</form>
+{{template "footer.html" .}}
